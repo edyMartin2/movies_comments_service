@@ -39,9 +39,11 @@ app.get('/api/comment/:id', async (req, res) => {
 /**
  * endpoint /comment?platformId for get comments by platforms
  */
-app.get('/api/comments/platform/:id', async (req, res) => {
+app.get('/api/comments/platform/:id/movie/:movieId', async (req, res) => {
   const platformId = req.params.id
-  const comment: Comments = await commentsRp.findByPlatformId(platformId)
+  const movieId  = req.params.movieId
+
+  const comment: Comments = await commentsRp.findByPlatformId(platformId, movieId)
   res.json(comment)
 });
 

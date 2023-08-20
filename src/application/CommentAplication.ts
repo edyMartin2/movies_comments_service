@@ -26,9 +26,10 @@ class CommentApplication {
      * @param id UUID  PlatformId
      * @returns Comments
      */
-    async findByPlatformId(id: string) {
+    async findByPlatformId(id: string, movieId: string) {
         let paramFilter = Filters.P as string
-        const Comments = await commentRp.get(id, paramFilter)
+        let movieFilter = Filters.M as string
+        const Comments = await commentRp.get(id, paramFilter, movieFilter, movieId)
         return Comments
     }
 

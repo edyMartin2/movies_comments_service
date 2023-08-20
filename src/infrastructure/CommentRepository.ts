@@ -28,12 +28,12 @@ class CommentRepository {
      */
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async get(id: string = "", filter: string = ''): Promise<any> {
-        
+    async get(id: string = "", filter: string = '', secondFilter: string = '', secondId: string = ''): Promise<any> {
+
         try {
             //const paramFilter: any = Filters[filter]
-            
-            const ids = id !== "" ? { [filter]: id } : {}
+
+            const ids = id !== "" && secondId !== "" ? { [filter]: id, [secondFilter]: secondId } : id !== "" ? { [filter]: id } : {}
 
             console.log('......', ids)
             const find = await this.collection?.find(ids).toArray();
